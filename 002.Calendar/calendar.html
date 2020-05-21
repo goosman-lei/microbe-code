@@ -1,0 +1,163 @@
+<html>
+<head>
+   <style type="text/css">
+* {
+   moz-user-select: -moz-none;
+   -moz-user-select: none;
+   -o-user-select:none;
+   -khtml-user-select:none;
+   -webkit-user-select:none;
+   -ms-user-select:none;
+   user-select:none;
+}
+#container {
+   border: 0.5px solid black;
+   margin: 80px auto;
+   width: 350px;
+   height: 250px;
+}
+.item {
+   border: 0.5px solid black;
+   width: 49px;
+   height: 49px;
+   line-height: 49px;
+   float: left;
+   text-align: center;
+}
+.item.selected {
+   background-color: #80B0FF4F;
+}
+.item.start {
+   background-image: linear-gradient(to right, #80B0FFBF, #80B0FF4F);
+}
+.item.end {
+   background-image: linear-gradient(to left, #80B0FFBF, #80B0FF4F);
+}
+   </style>
+   <script type="text/javascript" src="/static/js/jquery-3.5.1.min.js"></script>
+   <script type="text/javascript">
+$(function() {
+    function get_calendar_state() {
+        if ($('#container .item.end').length) {
+            return 'selected';
+        } else if ($('#container .item.start').length) {
+            return 'selecting';
+        } else {
+            return 'none';
+        }
+    }
+    function item_index(ele) {
+        return $('#container .item').index(ele);
+    }
+    function item_index_start() {
+        return item_index($('#container .item.start'));
+    }
+    function item_index_end() {
+        return item_index($('#container .item.end'));
+    }
+    function item_index_last_selected() {
+        return item_index($('#container .item.selected').last());
+    }
+    function flag_start(index) {
+        $('#container .item:eq(' + index + ')').addClass('start');
+    }
+    function clear_start() {
+        $('#container .item.start').removeClass('start');
+    }
+    function flag_selected(from, to) {
+        for (; from <= to; from ++) {
+            $('#container .item:eq(' + from + ')').addClass('selected');
+        }
+    }
+    function clear_selected(from, to) {
+        for (; from <= to; from ++) {
+            $('#container .item:eq(' + from + ')').removeClass('selected');
+        }
+    }
+    function flag_end(index) {
+        $('#container .item:eq(' + index + ')').addClass('end');
+    }
+    function clear_end() {
+        $('#container .item.end').removeClass('end');
+    }
+
+    $('#container .item').click(function() {
+        switch (get_calendar_state()) {
+        case 'none':
+            flag_start(item_index(this));
+        break;
+        case 'selecting':
+            var this_index = item_index(this),
+                start_index = item_index_start();
+            if (this_index < start_index) {
+                clear_start();
+                flag_start(this_index);
+            } else {
+                flag_selected(start_index + 1, this_index - 1);
+                flag_end(this_index);
+            }
+        break;
+        case 'selected':
+            var start_index = item_index_start(),
+                end_index = item_index_end();
+            clear_start();
+            clear_selected(start_index + 1, end_index - 1);
+            clear_end();
+            flag_start(item_index(this));
+        break;
+        }
+    });
+    $('#container .item').mouseover(function() {
+        if (get_calendar_state() != 'selecting') {
+            return;
+        }
+        var this_index = item_index(this),
+            start_index = item_index_start(),
+            last_selected_index = item_index_last_selected();
+        flag_selected(start_index + 1, this_index);
+        clear_selected(this_index + 1, last_selected_index);
+    });
+});
+   </script>
+</head>
+<body>
+   <div id="container">
+       <div class="item">1</div>
+       <div class="item">2</div>
+       <div class="item">3</div>
+       <div class="item">4</div>
+       <div class="item">5</div>
+       <div class="item">6</div>
+       <div class="item">7</div>
+       <div class="item">8</div>
+       <div class="item">9</div>
+       <div class="item">10</div>
+       <div class="item">11</div>
+       <div class="item">12</div>
+       <div class="item">13</div>
+       <div class="item">14</div>
+       <div class="item">15</div>
+       <div class="item">16</div>
+       <div class="item">17</div>
+       <div class="item">18</div>
+       <div class="item">19</div>
+
+       <div class="item">20</div>
+       <div class="item">21</div>
+       <div class="item">22</div>
+       <div class="item">23</div>
+       <div class="item">24</div>
+       <div class="item">25</div>
+       <div class="item">26</div>
+       <div class="item">27</div>
+       <div class="item">28</div>
+       <div class="item">29</div>
+       <div class="item">30</div>
+       <div class="item">31</div>
+       <div class="item">1</div>
+       <div class="item">2</div>
+       <div class="item">3</div>
+       <div class="item">4</div>
+   </div>
+</body>
+</html>

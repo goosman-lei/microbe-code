@@ -3,10 +3,7 @@ return [
     'engines' => [
         'json' => [
             'adapter' => '\\Microbe\\TemplateEngine\\Adapter\\Json',
-            'config'  => [
-                'headers'             => ['Content-Type: text/json;CHARSET=UTF-8'],
-                'json_encode_options' => JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE,
-            ],
+            'config'  => [],
         ],
         'smarty' => [
             'adapter' => '\\Microbe\\TemplateEngine\\Adapter\\Smarty',

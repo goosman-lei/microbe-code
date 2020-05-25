@@ -1,11 +1,10 @@
 <?php
 return [
-    'feature-name' => [
-        'summary' => '特征描述',
+    'use-ie' => [
+        'summary' => '用户使用IE访问',
         'rules' => [
             [
-                'os_name eq ios',
-                'ua_name eq nice-app',
+                'user-agent match ;msie;i',
             ],
         ],
     ],

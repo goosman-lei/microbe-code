@@ -8,9 +8,9 @@ init_client_env();
 $name = \Microbe\Microbe::$ins->runner->request->getQuery('name', 'XXX');
 
 if (\Microbe\Microbe::$ins->runner->clientEnv->is('use-ie')) {
-    echo "你好 {$name}, 请远离IE!";
+    echo "你好 {$name}, 请远离IE!\n";
 } else {
-    echo "你好 {$name}, 你已经远离IE!";
+    echo "你好 {$name}, 你已经远离IE!\n";
 }
 
 function init_client_env() {

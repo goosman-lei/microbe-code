@@ -11,6 +11,7 @@ $webpage = [
             'default_action' => 'index',
         ],
     ],
+    'templateEngine' => include(__DIR__ . '/template_engine.inc'),
     'dispatcher' => [
         'namespace' => '\\MicrobeDemo\\Action',
     ],

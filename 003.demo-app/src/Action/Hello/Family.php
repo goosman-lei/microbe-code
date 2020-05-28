@@ -1,6 +1,6 @@
 <?php
-namespace MicrobeDemo\Action\Welcome;
-class Sayhi extends \Microbe\Scene\Webpage\Action {
+namespace MicrobeDemo\Action\Hello;
+class Family extends \Microbe\Scene\Webpage\Action {
     public function exec() {
         $name = $this->request->getQuery('name', 'Unknown');
         /* 非模板方式 */

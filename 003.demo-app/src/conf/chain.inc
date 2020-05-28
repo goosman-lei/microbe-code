@@ -1,7 +1,7 @@
 <?php
 return [
     'feature' => [
-        'class'     => '\\MicrobeDemo\\Feature',
+        'class'     => '\\MicrobeDemo\\Chain\\Feature',
         'config'    => include(__DIR__ . '/feature.inc'),
         'direction' => 'append',
         'target'    => '-root',

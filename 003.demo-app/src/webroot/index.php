@@ -4,7 +4,6 @@ require_once(__DIR__ . '/../../vendor/autoload.php');
 
 $config = new \Microbe\Config\File(__DIR__ . '/../conf');
 
-\Microbe\Runner\Webpage::getInstance()->init($config);
-\Microbe\Microbe::$ins->appendChain(new \MicrobeDemo\Action(), 'action');
+\Microbe\Scene\Webpage\Runner::getInstance()->init($config);
 
-\Microbe\Runner\Webpage::getInstance()->run();
+\Microbe\Scene\Webpage\Runner::getInstance()->run();

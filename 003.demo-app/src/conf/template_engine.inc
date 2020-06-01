@@ -1,5 +1,6 @@
 <?php
 return [
+    'error_tpl' => 'error',
     'rules'   => [
         '*' => 'smarty-pc',
         'Welcome' => [

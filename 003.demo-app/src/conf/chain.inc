@@ -4,6 +4,6 @@ return [
         'class'     => '\\MicrobeDemo\\Chain\\Feature',
         'config'    => include(__DIR__ . '/feature.inc'),
         'direction' => 'append',
-        'target'    => '-root',
+        'target'    => '-error',
     ],
 ];

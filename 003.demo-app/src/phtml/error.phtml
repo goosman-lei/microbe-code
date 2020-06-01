@@ -3,20 +3,6 @@
 </head>
 <body>
     <h1><font color="red">Error occurs in phtml: <?php echo $msg; ?></font></h1>
-    <?php
-    switch ($type) {
-    case 'error':
-        echo $datas['errfile'] . ':' . $datas['errline'] . '<br />';
-    break;
-    case 'exception':
-        echo $datas['file'] . ':' . $datas['line'] . '<br />';
-    break;
-    case 'failure':
-        echo '<pre>';
-        print_r($datas);
-        echo '</pre>';
-    break;
-    }
-    ?>
+    <?php echo $file . ':' . $line . '<br />'; ?>
 </body>
 </html>

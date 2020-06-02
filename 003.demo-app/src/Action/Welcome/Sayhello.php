@@ -13,7 +13,7 @@ class Sayhello extends \Microbe\Scene\Webpage\Action {
         }
         */
 
-        $this->response->doFailure('normal error', ['name' => $name]);
+        trigger_error('user error', E_USER_ERROR);
 
         /* 模板方式 */
         $this->response->templateEngine->assign('name', $name);

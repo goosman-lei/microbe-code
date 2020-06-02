@@ -13,7 +13,7 @@ class Family extends \Microbe\Scene\Webpage\Action {
         }
         */
 
-        $this->response->doFailure('normal error', ['name' => $name]);
+        $this->response->doException(new \RuntimeException('action error'));
 
         /* 模板方式 */
         $this->response->templateEngine->assign('name', $name);

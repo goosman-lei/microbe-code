@@ -13,7 +13,7 @@ class Friend extends \Microbe\Scene\Webpage\Action {
         }
         */
 
-        $this->response->doFailure('normal error', ['name' => $name]);
+        throw new \Exception('user exception');
 
         /* 模板方式 */
         $this->response->templateEngine->assign('name', $name);

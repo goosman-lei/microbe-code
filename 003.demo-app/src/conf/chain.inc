@@ -12,4 +12,14 @@ return [
         'direction' => 'append',
         'target'    => 'error',
     ],
+    'error-tpl' => [
+        'class'     => '\\Microbe\\Scene\\Webpage\\Chain\\ErrorTemplate',
+        'config'    => [
+            'rules' => [
+                '*' => 'error',
+            ],
+        ],
+        'direction' => 'append',
+        'target'    => '-template-engine',
+    ],
 ];

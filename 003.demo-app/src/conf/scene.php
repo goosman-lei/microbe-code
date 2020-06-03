@@ -5,7 +5,7 @@ $webpage = [
             'base_uri' => '/003.demo-app',
         ],
         'router' => [
-            'class'  => '\\Microbe\\Cgi\\Router\\RStatic',
+            'class'  => '\\Microbe\\Scene\\Webpage\\Router\\RStatic',
             'config' => [
                 'default_module' => 'index',
                 'default_action' => 'index',
@@ -44,7 +44,7 @@ $webpage = [
 $daemon = [
     'systemChains' => [
         'router' => [
-            'class' => '\\Microbe\\Cli\\Router\\ROption',
+            'class' => '\\Microbe\\Scene\\Daemon\\Router\\ROption',
             'config' => [
                 'option_name_module' => 'module',
                 'option_name_action' => 'action',

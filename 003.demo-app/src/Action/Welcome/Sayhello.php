@@ -13,6 +13,8 @@ class Sayhello extends \Microbe\Scene\Webpage\Action {
         }
         */
 
+        throw new \RuntimeException('Haha');
+
         /* 模板方式 */
         $this->response->templateEngine->assign('name', $name);
     }

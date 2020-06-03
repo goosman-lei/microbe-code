@@ -13,6 +13,8 @@ class Sayhi extends \Microbe\Scene\Webpage\Action {
         }
         */
 
+        trigger_error('Haha', E_USER_ERROR);
+
         /* 模板方式 */
         $this->response->templateEngine->assign('name', $name);
     }

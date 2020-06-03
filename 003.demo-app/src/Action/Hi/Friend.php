@@ -13,6 +13,8 @@ class Friend extends \Microbe\Scene\Webpage\Action {
         }
         */
 
+        $this->response->abortException(new \RuntimeException('Hello World!'));
+
         /* 模板方式 */
         $this->response->templateEngine->assign('name', $name);
     }

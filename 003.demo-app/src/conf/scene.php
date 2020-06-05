@@ -51,4 +51,5 @@ $daemon = [
             'namespace' => '\\MicrobeDemo\\Daemon',
         ],
     ],
+    'userChains' => [],
 ];

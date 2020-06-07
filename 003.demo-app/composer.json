@@ -3,7 +3,8 @@
     "type": "project",
     "homepage": "https://github.com/goosman-lei/microbe-demo",
     "require": {
-        "goosman-lei/microbe": "dev-master"
+        "goosman-lei/microbe": "dev-master",
+        "microbe-dep/service": "dev-master"
     },
     "license": "Apache-2.0",
     "authors": [
@@ -22,7 +23,11 @@
         },
         {
             "type": "vcs",
-            "url": "/home/work/repo.me/microbe"
+            "url": "git@github.com:goosman-lei/microbe.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:goosman-lei/microbe-dep-service.git"
         }
     ],
     "minimum-stability": "dev",

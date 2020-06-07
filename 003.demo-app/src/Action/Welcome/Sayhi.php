@@ -13,9 +13,11 @@ class Sayhi extends \Microbe\Scene\Webpage\Action {
         }
         */
 
-        trigger_error('Haha', E_USER_ERROR);
-
-        /* 模板方式 */
-        $this->response->templateEngine->assign('name', $name);
+        $userInfoProxy = \Microbe\Microbe::$ins->workApp->serviceFactory->get('service', 'UserInfo');
+        $userInfoRes   = $userInfoProxy->getInfo($name);
+        if (\Microbe\Service::isSuccess($userInfoRes)) {
+            $userInfo = $userInfoRes['data'];
+            $this->response->templateEngine->assign('userInfo', $userInfo);
+        }
     }
 }

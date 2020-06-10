@@ -46,8 +46,9 @@ $(function() {
             return 'none';
         }
     }
-    function item_index(ele) {
-        return $('#container .item').index(ele);
+
+    function item_index(item) {
+        return $('#container .item').index(item);
     }
     function item_index_start() {
         return item_index($('#container .item.start'));
@@ -56,54 +57,50 @@ $(function() {
         return item_index($('#container .item.end'));
     }
     function item_index_last_selected() {
-        return item_index($('#container .item.selected').last());
+        return item_index($('#container .item:last()'));
     }
-    function flag_start(index) {
-        $('#container .item:eq(' + index + ')').addClass('start');
-    }
-    function clear_start() {
+    function item_start_clear() {
         $('#container .item.start').removeClass('start');
     }
-    function flag_selected(from, to) {
-        for (; from <= to; from ++) {
-            $('#container .item:eq(' + from + ')').addClass('selected');
-        }
-    }
-    function clear_selected(from, to) {
-        for (; from <= to; from ++) {
-            $('#container .item:eq(' + from + ')').removeClass('selected');
-        }
-    }
-    function flag_end(index) {
-        $('#container .item:eq(' + index + ')').addClass('end');
-    }
-    function clear_end() {
+    function item_end_clear() {
         $('#container .item.end').removeClass('end');
     }
+    function range_select(from, to) {
+        for (var i = from; i <= to; i ++) {
+            $('#container .item:eq(' + i + ')').addClass('selected');
+        }
+    }
+    function range_unselect(from, to) {
+        for (var i = from; i <= to; i ++) {
+            $('#container .item:eq(' + i + ')').removeClass('selected');
+        }
+    }
+
 
     $('#container .item').click(function() {
         switch (get_calendar_state()) {
         case 'none':
-            flag_start(item_index(this));
+            $(this).addClass('start');
         break;
         case 'selecting':
-            var this_index = item_index(this),
-                start_index = item_index_start();
-            if (this_index < start_index) {
-                clear_start();
-                flag_start(this_index);
+            var startIndex = item_index_start(),
+                thisIndex = item_index(this);
+            if (thisIndex < startIndex) {
+                item_start_clear();
+                $(this).addClass('start');
             } else {
-                flag_selected(start_index + 1, this_index - 1);
-                flag_end(this_index);
+                range_select(startIndex + 1, thisIndex - 1);
+                $(this).removeClass('selected');
+                $(this).addClass('end');
             }
         break;
         case 'selected':
-            var start_index = item_index_start(),
-                end_index = item_index_end();
-            clear_start();
-            clear_selected(start_index + 1, end_index - 1);
-            clear_end();
-            flag_start(item_index(this));
+            var startIndex = item_index_start(),
+                endIndex = item_index_end();
+            item_start_clear();
+            range_unselect(startIndex + 1, endIndex - 1);
+            item_end_clear();
+            $(this).addClass('start');
         break;
         }
     });
@@ -111,11 +108,11 @@ $(function() {
         if (get_calendar_state() != 'selecting') {
             return;
         }
-        var this_index = item_index(this),
-            start_index = item_index_start(),
-            last_selected_index = item_index_last_selected();
-        flag_selected(start_index + 1, this_index);
-        clear_selected(this_index + 1, last_selected_index);
+        var startIndex = item_index_start(),
+            thisIndex = item_index(this),
+            lastSelectedIndex = item_index_last_selected();
+        range_unselect(thisIndex + 1, lastSelectedIndex);
+        range_select(startIndex + 1, thisIndex);
     });
 });
    </script>
@@ -141,7 +138,6 @@ $(function() {
        <div class="item">17</div>
        <div class="item">18</div>
        <div class="item">19</div>
-
        <div class="item">20</div>
        <div class="item">21</div>
        <div class="item">22</div>

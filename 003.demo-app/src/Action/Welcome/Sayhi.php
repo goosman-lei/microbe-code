@@ -13,11 +13,19 @@ class Sayhi extends \Microbe\Scene\Webpage\Action {
         }
         */
 
+        $mysqli = \Microbe\Microbe::$ins->workApp->resourceFactory->get('mysqli://default/master');
+        $rs     = $mysqli->query('SELECT * FROM user');
+        $users  = [];
+        while ($row = $rs->fetch_assoc()) {
+            array_push($users, $row);
+        }
+
         $userInfoProxy = \Microbe\Microbe::$ins->workApp->serviceFactory->get('service', 'UserInfo');
         $userInfoRes   = $userInfoProxy->getInfo($name);
         if (\Microbe\Service::isSuccess($userInfoRes)) {
             $userInfo = $userInfoRes['data'];
             $this->response->templateEngine->assign('userInfo', $userInfo);
+            $this->response->templateEngine->assign('users', $users);
         }
     }
 }

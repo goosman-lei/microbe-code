@@ -9,3 +9,4 @@ $service = [
         ],
     ],
 ];
+$resource = include(__DIR__ . '/resource.inc');
